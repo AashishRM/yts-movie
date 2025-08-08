@@ -1,16 +1,24 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const HeaderBar = () => {
-  const [keyword, setkeyword] = useState("");
+export const HeaderBar = ({ onSearch }) => {
+  // ✅ Accept onSearch as a prop
+  const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (keyword.trim()) {
-      navigate(`/search/${keyword}`);
-      setkeyword("");
+    const trimmedKeyword = keyword.trim();
+    if (!trimmedKeyword) return;
+
+    // ✅ Send search event to Google Analytics
+    if (onSearch) {
+      onSearch(trimmedKeyword);
     }
+
+    // Navigate and reset
+    navigate(`/search/${trimmedKeyword}`);
+    setKeyword("");
   };
 
   const scrollToSection = (id) => {
@@ -41,7 +49,7 @@ export const HeaderBar = () => {
           <input
             type="text"
             value={keyword}
-            onChange={(e) => setkeyword(e.target.value)}
+            onChange={(e) => setKeyword(e.target.value)}
             placeholder="Quick Search"
             className="px-3 py-1 rounded-l bg-white text-black"
           />
@@ -53,6 +61,7 @@ export const HeaderBar = () => {
           </button>
         </form>
 
+        {/* Navigation Links */}
         <a
           href="#"
           onClick={(e) => {
