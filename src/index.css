@@ -15,3 +15,21 @@ html {
 html, body, #root {
   height: 100%;
 }
+
+/* Optional: Custom Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4B5563 transparent;
+}
+
+/* For Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #4B5563;
+  border-radius: 8px;
+}

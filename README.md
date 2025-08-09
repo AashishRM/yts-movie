@@ -2,7 +2,7 @@
 
 https://torrent-movie.vercel.app/
 
-## This project is not responsive
+## This project is responsive
 
 - npm create vite@latest
 - npm install react-router react-router-dom axios
@@ -41,9 +41,3 @@ This is my **first React project built using the [YTS](https://yts.mx/api) publi
 <img width="1512" alt="Screenshot 2025-07-05 at 6 36 28 PM" src="https://github.com/user-attachments/assets/8637ce79-93d1-4c5c-97f2-7dc97f315d04" />
 <img width="1512" alt="Screenshot 2025-07-05 at 6 34 31 PM" src="https://github.com/user-attachments/assets/2fb6ae95-5306-4430-baa8-139defa02669" />
 <img width="1512" alt="Screenshot 2025-07-05 at 6 36 02 PM" src="https://github.com/user-attachments/assets/da665f43-5cd5-431c-80fd-5d9453d126ff" />
-
-
-
-
-
-

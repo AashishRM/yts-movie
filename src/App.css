@@ -1,3 +1,11 @@
 .nav-item.active{
     border-bottom: 2px solid white;
 }
+
+section[id] {
+  scroll-margin-top: 70px; /* Same as header height */
+}
+
+#movie-details {
+  scroll-margin-top: 70px;
+}

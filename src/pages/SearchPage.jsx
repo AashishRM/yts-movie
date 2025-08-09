@@ -5,13 +5,20 @@ import { ResultMovies } from "../components/module/Landing/ResultMovies";
 export const SearchPage = () => {
   const { keyword } = useParams();
 
+  // Normalize keyword
+  const decodedKeyword = decodeURIComponent(keyword || "").trim();
+
   useEffect(() => {
-    console.log("Searching for:", keyword);
-  }, [keyword]);
+    if (decodedKeyword) {
+      console.log("Searching for:", decodedKeyword);
+    } else {
+      console.log("Search page loaded with no keyword");
+    }
+  }, [decodedKeyword]);
 
   return (
-    <main>
-        <ResultMovies keyword={keyword} />
+    <main className="min-h-[75vh]">
+      <ResultMovies keyword={decodedKeyword} />
     </main>
   );
 };
