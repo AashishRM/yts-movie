@@ -3,9 +3,24 @@ import { useEffect, useState } from "react";
 export const DownloadGuideModal = () => {
   const [showModal, setShowModal] = useState(false);
 
-  // Check if user already dismissed it
   useEffect(() => {
-    const dismissed = localStorage.getItem("downloadGuideDismissed");
+    const storedData = localStorage.getItem("downloadGuideDismissed");
+
+    let dismissed = false;
+
+    if (storedData) {
+      try {
+        const parsed = JSON.parse(storedData);
+        const now = new Date().getTime();
+
+        if (parsed.expiry && now < parsed.expiry) {
+          dismissed = true;
+        }
+      } catch {
+        // If JSON parse fails, treat as not dismissed
+      }
+    }
+
     const isMobile = window.innerWidth < 768;
     if (isMobile && !dismissed) {
       setShowModal(true);
@@ -14,8 +29,18 @@ export const DownloadGuideModal = () => {
 
   const handleClose = (dontShowAgain = false) => {
     setShowModal(false);
+
     if (dontShowAgain) {
-      localStorage.setItem("downloadGuideDismissed", "true");
+      const now = new Date().getTime();
+      const fifteenDays = 15 * 24 * 60 * 60 * 1000; // ms in 15 days
+
+      localStorage.setItem(
+        "downloadGuideDismissed",
+        JSON.stringify({
+          value: true,
+          expiry: now + fifteenDays,
+        })
+      );
     }
   };
 
